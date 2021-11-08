@@ -59,8 +59,6 @@ const post = [
     },
 ]
 
-
-
 // render dei post
 // - ottenere container post
 // - markup post
@@ -70,9 +68,37 @@ const container = document.querySelector('.posts-list');
 
 draw_post(post, container);
 
+// aggiunta like (++)
+const like_buttons = document.querySelectorAll('.like-button');
+
+for (let i = 0; i < like_buttons.length; i++) {
+    const btn = like_buttons[i];
+    btn.addEventListener('click', (event) => {
+        // rimuovere il comportamento di default del click
+        event.preventDefault();
+
+        // ottenere il padre
+        console.log('Parent', btn.closest('.likes'));
+        const like_parent = btn.closest('.likes');
+        const like_counter = like_parent.querySelector('.js-likes-counter');
+
+        // ottenere valore like attuale
+        let actual_likes = parseInt(like_counter.innerText);
+
+        if (!btn.classList.contains('like-button--liked') ) {
+            btn.classList.add('like-button--liked');
+
+            like_counter.innerText = ++actual_likes;
+        } else {
+            btn.classList.remove('like-button--liked');
+
+            like_counter.innerText = --actual_likes;
+        }
+    });
+    
+}
 
 // gen post items
-
 function draw_post(post, container) {
     for (let i = 0; i < post.length; i++) {
         const card = post[i];
