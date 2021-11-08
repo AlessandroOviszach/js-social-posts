@@ -61,6 +61,58 @@ const post = [
 
 
 
+// render dei post
+// - ottenere container post
+// - markup post
+// - aggiunta post a container
+
+const container = document.querySelector('.posts-list');
+
+draw_post(post, container);
+
+
+// gen post items
+
+function draw_post(post, container) {
+    for (let i = 0; i < post.length; i++) {
+        const card = post[i];
+        
+        container.innerHTML += `
+        <div class="post">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src="${card.author.avatar}" alt="${card.author.name}">                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${card.author.name}</div>
+                        <div class="post-meta__time">${card.date}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${card.text}</div>
+            <div class="post__image">
+                <img src="${card.Image}" alt="${card.author.name}">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${card.likes}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+        `;
+    }
+}
+
+
 
 
 
