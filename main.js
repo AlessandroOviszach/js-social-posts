@@ -77,22 +77,25 @@ function draw_post(post, container) {
     for (let i = 0; i < post.length; i++) {
         const card = post[i];
         
+        // destrutturazione dell'oggetto
+        const {author, date, text, Image, likes} = card
+
         container.innerHTML += `
         <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${card.author.avatar}" alt="${card.author.name}">                    
+                        <img class="profile-pic" src="${author.avatar}" alt="${author.name}">                    
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">${card.author.name}</div>
-                        <div class="post-meta__time">${card.date}</div>
+                        <div class="post-meta__author">${author.name}</div>
+                        <div class="post-meta__time">${date}</div>
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">${card.text}</div>
+            <div class="post__text">${text}</div>
             <div class="post__image">
-                <img src="${card.Image}" alt="${card.author.name}">
+                <img src="${Image}" alt="${author.name}">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
@@ -103,7 +106,7 @@ function draw_post(post, container) {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${card.likes}</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
